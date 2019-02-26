@@ -1,0 +1,115 @@
+/* 
+
+SETTINGS 
+
+*/
+
+:root {
+    --color-alpha: OrangeRed;
+    --color-beta: #e1decb;
+    --color-dark: #221e21;
+    --gutter: 24px;
+}
+
+/* 
+
+ELEMENTS 
+
+*/
+
+body, html {
+    /* Positioning */
+    /* Box model */
+    /* Fonts */
+    font-family: 'Muli', sans-serif;
+    line-height: 1.6;
+    color: var(--color-dark);
+    font-size: 17px;
+    /* Apperance */
+    /* Other styles */
+}
+
+/* 
+
+OBJECTS
+
+*/
+
+@media (min-width:650px) {
+    .o-grid {
+        /* Positioning */
+        display: grid;
+        gap: calc(var(--gutter) *2);
+        /* Box model */
+        /* Fonts */
+        /* Apperance */
+        /* Other styles */
+    }
+    .o-grid--main-layout {
+        grid-template-columns: 350px 1fr;
+        grid-template-rows: 100vh;
+    }
+    .o-grid--overview {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+.o-hide {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* 
+
+COMPONENTS
+
+*/
+
+/* notifications */
+
+.c-notifications {
+    position: absolute;
+    bottom: 0;
+    right: calc(var(--gutter)*2);
+    width: 300px
+}
+
+.c-notification {
+    margin: var(--gutter) 0;
+    padding: calc(var(--gutter)/2);
+    background: #FFFfff;
+    box-shadow: 1px 1px 2px 1px rgba(30, 30, 30, .1);
+    will-change: opacity;
+    opacity: 1;
+    transition: opacity 800ms ease-in-out;
+}
+
+.c-notification__header {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.c-notification__action {
+    all: unset;
+    font-size: .9rem;
+    display: block;
+    color: var(--color-alpha);
+    text-decoration: underline;
+    text-transform: uppercase;
+    cursor: pointer;
+    will-change: opacity;
+    opacity: .5;
+    transition: opacity 200ms ease-in-out;
+}
+
+/* 
+
+UTILITIES
+
+*/
