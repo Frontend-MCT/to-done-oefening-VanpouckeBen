@@ -1,0 +1,120 @@
+
+/* form */
+
+.c-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--gutter);
+}
+
+.c-form__inputs {
+    width: inherit;
+    margin-left: calc(var(--gutter)/2);
+}
+
+.c-input {
+    display: block;
+    width: 100%;
+    /* margin-bottom: calc(var(--gutter)/3); */
+    padding: calc(var(--gutter)/3) 0;
+    border: 1px solid transparent;
+}
+
+.c-input:focus {
+    outline: none;
+    border-bottom: 1px solid var(--color-alpha);
+}
+
+.c-input--task {
+    font-size: var(--gutter);
+}
+
+.c-input--select {
+    width: auto;
+}
+
+.c-input--select:focus {
+    border: 1px solid var(--color-alpha);
+}
+
+/* checkboxes */
+
+.c-custom-input-option-label {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -ms-align-items: center;
+    align-items: baseline;
+    padding-bottom: 0;
+}
+
+.c-custom-input-option {
+    display: flex;
+    -ms-align-items: center;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border: 1px solid var(--color-gray-xx-light);
+    box-shadow: var(--inset-shadow);
+    transition: border var(--transition-alpha);
+}
+
+.c-custom-input-option--checkbox {
+    border-radius: var(--radius);
+}
+
+.c-custom-input-option--radio {
+    border-radius: 100%;
+}
+
+.c-custom-input-option__symbol {
+    display: block;
+    opacity: 0;
+    /* Hide the svg initially */
+    transform: scale(.5);
+    transition: all var(--transition-alpha);
+}
+
+.c-custom-input-option--checkbox .c-custom-input-option__symbol {
+    width: 10px;
+    height: 10px;
+    fill: var(--color-alpha);
+}
+
+.c-custom-input-option--radio .c-custom-input-option__symbol {
+    background-color: var(--color-alpha);
+    border-radius: 100%;
+    width: 6px;
+    height: 6px;
+}
+
+/* hover state */
+
+.c-custom-input-option-label:hover .c-custom-input-option {
+    border-color: var(--color-alpha);
+}
+
+/* focused and active state */
+
+.c-custom-input-option-hidden:focus+.c-custom-input-option-label .c-custom-input-option {
+    border: 1px solid var(--color-alpha-x-light);
+    box-shadow: var(--focus-shadow);
+}
+
+.c-custom-input-option-hidden:checked+.c-custom-input-option-label .c-custom-input-option {
+    border: 1px solid var(--color-alpha-x-light);
+    box-shadow: var(--focus-shadow);
+    background-color: var(--color-alpha);
+}
+
+/* checked state */
+
+.c-custom-input-option-hidden:checked+.c-custom-input-option-label .c-custom-input-option__symbol {
+    opacity: 1;
+    /* Show the svg when the invisible checkbox is checked */
+    transform: scale(1);
+    fill: white;
+}

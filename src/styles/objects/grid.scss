@@ -1,0 +1,25 @@
+
+/* 
+
+OBJECTS
+
+*/
+
+@media (min-width:650px) {
+    .o-grid {
+        /* Positioning */
+        display: grid;
+        gap: calc(var(--gutter) *2);
+        /* Box model */
+        /* Fonts */
+        /* Apperance */
+        /* Other styles */
+    }
+    .o-grid--main-layout {
+        grid-template-columns: 350px 1fr;
+        grid-template-rows: 100vh;
+    }
+    .o-grid--overview {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}

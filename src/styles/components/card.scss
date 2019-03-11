@@ -1,0 +1,20 @@
+
+/* cards */
+
+.c-card {
+    border-top: 1px solid var(--color-gray-x-light);
+}
+
+.c-card-info {
+    display: block;
+    margin-left: calc(var(--gutter)/3);
+}
+
+.c-card-info__title {
+    color: var(--color-dark);
+}
+
+.c-card-info__category {
+    color: var(--color-gray-x-light);
+    font-weight: 600;
+}

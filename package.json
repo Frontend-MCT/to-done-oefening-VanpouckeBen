@@ -1,0 +1,39 @@
+{
+  "name": "to-done",
+  "version": "0.0.2",
+  "description": "A small app to keep track of my todos.",
+  "main": "null",
+  "scripts": {
+    "serve": "gulp serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Frontend-MCT/to-done-oefening-VanpouckeBen.git"
+  },
+  "author": "Ben",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Frontend-MCT/to-done-oefening-VanpouckeBen/issues"
+  },
+  "homepage": "https://github.com/Frontend-MCT/to-done-oefening-VanpouckeBen#readme",
+  "dependencies": {
+    "@babel/core": "^7.3.4",
+    "autoprefixer": "^9.4.10",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "browser-sync": "^2.26.3",
+    "cssnano": "^4.1.10",
+    "eslint-plugin-react": "^7.12.4",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^5.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.11.0",
+    "webpack": "^4.29.6",
+    "webpack-stream": "^5.2.1"
+  }
+}

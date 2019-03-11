@@ -1,0 +1,29 @@
+/* 
+
+SETTINGS 
+
+*/
+
+:root {
+    /* colors */
+    --color-alpha: OrangeRed;
+    --color-alpha-xx-light: #F9D6BF;
+    --color-alpha-x-light: #F2975A;
+    --color-alpha-light: #F9761F;
+    --color-gray-xx-light: #CFCBC9;
+    --color-gray-x-light: #A8A5A4;
+    --color-gray: #696563;
+    --color-dark: #221e21;
+    /* Shadows */
+    --shadow-color: var(--color-alpha-xx-light);
+    --inset-shadow: inset 0 1px 1px var(--shadow-color);
+    --focus-shadow-color: var(--color-alpha-xx-light);
+    --focus-shadow: 0 0 0 3px var(--focus-shadow-color);
+    /* border radius */
+    --radius: 3px;
+    /* transitions */
+    --transition-alpha: .1s ease-in-out;
+    /* gutter */
+    --gutter: 24px;
+}
+
