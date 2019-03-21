@@ -90,7 +90,12 @@
     width: 6px;
     height: 6px;
 }
-
+.c-custom-input-option-hidden+.c-custom-input-option-label
+{
+    opacity: 1;
+    will-change: opacity;
+    transition: opacity 3s ease-out;
+}
 /* hover state */
 
 .c-custom-input-option-label:hover .c-custom-input-option {
@@ -110,6 +115,10 @@
     background-color: var(--color-alpha);
 }
 
+.c-custom-input-option-hidden:checked+.c-custom-input-option-label
+{
+    opacity: 0.3;
+}
 /* checked state */
 
 .c-custom-input-option-hidden:checked+.c-custom-input-option-label .c-custom-input-option__symbol {

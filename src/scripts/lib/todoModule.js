@@ -37,8 +37,18 @@ const todoModule = (function () {
 
     }
 
+    const updateUserName = function (userName) {
+        dataAccess.newUserName(userName);
+    }
+
+    const retrieveUserName = function () {
+        userName = dataAccess.retrieveUserName();
+        todoUI.showUserName(userName);
+    }
     return {
         addToDo: addToDo,
-        retrieveTodos: retrieveTodos
+        retrieveTodos: retrieveTodos,
+        updateUserName: updateUserName,
+        retrieveUserName: retrieveUserName
     }
 })();

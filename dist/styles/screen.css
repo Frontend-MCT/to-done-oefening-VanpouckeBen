@@ -1,0 +1,322 @@
+/* 
+
+SETTINGS 
+
+*/
+
+:root {
+    /* colors */
+    --color-alpha: OrangeRed;
+    --color-alpha-xx-light: #F9D6BF;
+    --color-alpha-x-light: #F2975A;
+    --color-alpha-light: #F9761F;
+    --color-gray-xx-light: #CFCBC9;
+    --color-gray-x-light: #A8A5A4;
+    --color-gray: #696563;
+    --color-dark: #221e21;
+    /* Shadows */
+    --shadow-color: var(--color-alpha-xx-light);
+    --inset-shadow: inset 0 1px 1px var(--shadow-color);
+    --focus-shadow-color: var(--color-alpha-xx-light);
+    --focus-shadow: 0 0 0 3px var(--focus-shadow-color);
+    /* border radius */
+    --radius: 3px;
+    /* transitions */
+    --transition-alpha: .1s ease-in-out;
+    /* gutter */
+    --gutter: 24px;
+}
+
+/* 
+
+ELEMENTS 
+
+*/
+
+body, html {
+    /* Positioning */
+    /* Box model */
+    /* Fonts */
+    font-family: 'Muli', sans-serif;
+    line-height: 1.6;
+    color: var(--color-dark);
+    font-size: 17px;
+    /* Apperance */
+    /* Other styles */
+}
+
+/* 
+
+OBJECTS
+
+*/
+
+@media (min-width:650px) {
+    .o-grid {
+        /* Positioning */
+        display: grid;
+        gap: calc(var(--gutter) *2);
+        /* Box model */
+        /* Fonts */
+        /* Apperance */
+        /* Other styles */
+    }
+    .o-grid--main-layout {
+        grid-template-columns: 350px 1fr;
+        grid-template-rows: 100vh;
+    }
+    .o-grid--overview {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+.o-hide {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/*
+    Object: Button reset
+    ---
+    Small button reset object
+*/
+
+.o-button-reset {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+}
+
+/*
+    Objects: List
+    ---
+    Small reusable object to remove default list styling from lists
+*/
+
+.o-list {
+    list-style: none;
+    padding: 0;
+    color: var(--color-gray);
+}
+
+/* 
+
+COMPONENTS
+
+*/
+
+/* main */
+
+.c-main {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: var(--gutter);
+}
+
+/* form */
+
+.c-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--gutter);
+}
+
+.c-form__inputs {
+    width: inherit;
+    margin-left: calc(var(--gutter)/2);
+}
+
+.c-input {
+    display: block;
+    width: 100%;
+    /* margin-bottom: calc(var(--gutter)/3); */
+    padding: calc(var(--gutter)/3) 0;
+    border: 1px solid transparent;
+}
+
+.c-input:focus {
+    outline: none;
+    border-bottom: 1px solid var(--color-alpha);
+}
+
+.c-input--task {
+    font-size: var(--gutter);
+}
+
+.c-input--select {
+    width: auto;
+}
+
+.c-input--select:focus {
+    border: 1px solid var(--color-alpha);
+}
+
+/* checkboxes */
+
+.c-custom-input-option-label {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -ms-align-items: center;
+    align-items: baseline;
+    padding-bottom: 0;
+}
+
+.c-custom-input-option {
+    display: flex;
+    -ms-align-items: center;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border: 1px solid var(--color-gray-xx-light);
+    box-shadow: var(--inset-shadow);
+    transition: border var(--transition-alpha);
+}
+
+.c-custom-input-option--checkbox {
+    border-radius: var(--radius);
+}
+
+.c-custom-input-option--radio {
+    border-radius: 100%;
+}
+
+.c-custom-input-option__symbol {
+    display: block;
+    opacity: 0;
+    /* Hide the svg initially */
+    transform: scale(.5);
+    transition: all var(--transition-alpha);
+}
+
+.c-custom-input-option--checkbox .c-custom-input-option__symbol {
+    width: 10px;
+    height: 10px;
+    fill: var(--color-alpha);
+}
+
+.c-custom-input-option--radio .c-custom-input-option__symbol {
+    background-color: var(--color-alpha);
+    border-radius: 100%;
+    width: 6px;
+    height: 6px;
+}
+
+/* hover state */
+
+.c-custom-input-option-label:hover .c-custom-input-option {
+    border-color: var(--color-alpha);
+}
+
+/* focused and active state */
+
+.c-custom-input-option-hidden:focus+.c-custom-input-option-label .c-custom-input-option {
+    border: 1px solid var(--color-alpha-x-light);
+    box-shadow: var(--focus-shadow);
+}
+
+.c-custom-input-option-hidden:checked+.c-custom-input-option-label .c-custom-input-option {
+    border: 1px solid var(--color-alpha-x-light);
+    box-shadow: var(--focus-shadow);
+    background-color: var(--color-alpha);
+}
+
+/* checked state */
+
+.c-custom-input-option-hidden:checked+.c-custom-input-option-label .c-custom-input-option__symbol {
+    opacity: 1;
+    /* Show the svg when the invisible checkbox is checked */
+    transform: scale(1);
+    fill: white;
+}
+
+/* icon */
+
+.c-icon {
+    fill: var(--color-alpha);
+}
+
+/* cards */
+
+.c-card {
+    border-top: 1px solid var(--color-gray-x-light);
+}
+
+.c-card-info {
+    display: block;
+    margin-left: calc(var(--gutter)/3);
+}
+
+.c-card-info__title {
+    color: var(--color-dark);
+}
+
+.c-card-info__category {
+    color: var(--color-gray-x-light);
+    font-weight: 600;
+}
+
+/* notifications */
+
+.c-notifications {
+    position: absolute;
+    bottom: 0;
+    right: calc(var(--gutter)*2);
+    width: 300px
+}
+
+.c-notification {
+    margin: var(--gutter) 0;
+    padding: calc(var(--gutter)/2);
+    background: #FFFfff;
+    box-shadow: 1px 1px 2px 1px rgba(30, 30, 30, .1);
+    will-change: opacity;
+    opacity: 1;
+    transition: opacity 800ms ease-in-out;
+}
+
+.c-notification__header {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.c-notification__action {
+    all: unset;
+    font-size: .9rem;
+    display: block;
+    color: var(--color-alpha);
+    text-decoration: underline;
+    text-transform: uppercase;
+    cursor: pointer;
+    will-change: opacity;
+    opacity: .5;
+    transition: opacity 200ms ease-in-out;
+}
+
+/* 
+
+UTILITIES
+
+*/

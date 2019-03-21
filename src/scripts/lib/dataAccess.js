@@ -4,8 +4,30 @@
 const dataAccess = (function () {
     let todoList = []
     let id = 0;
+    let userName = "Marty";
     const todoListName = "todoList"
+    const user = "user";
 
+    const newUserName = function (newUserName) {
+        //set local variable
+        userName = newUserName;
+        //voeg toe aan local storage
+        localStorage.setItem(user, JSON.stringify(userName));
+    }
+
+    const retrieveUserName = function () {
+        //haal user variabele op uit local storage
+        userName = JSON.parse(localStorage.getItem(user));
+
+        //indien null of lege string -> default en stop in local storage
+        if (!userName || userName == "") {
+            userName = "Marty";
+            localStorage.setItem(user, JSON.stringify(userName));
+        }
+
+        //geef user name terug 
+        return userName;
+    }
 
     const createTodo = function (todo) {
         //todo id opvullen id
@@ -62,7 +84,9 @@ const dataAccess = (function () {
         createTodo: createTodo,
         retrieveTodo: retrieveTodo,
         updateTodo: updateTodo,
-        deleteTodo: deleteTodo
+        deleteTodo: deleteTodo,
+        newUserName: newUserName,
+        retrieveUserName: retrieveUserName
     }
 
 

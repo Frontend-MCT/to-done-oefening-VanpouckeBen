@@ -4,8 +4,30 @@
 const dataAccess = (function () {
     let todoList = []
     let id = 0;
+    let userName = "Marty";
     const todoListName = "todoList"
+    const user = "user";
 
+    const newUserName = function (newUserName) {
+        //set local variable
+        userName = newUserName;
+        //voeg toe aan local storage
+        localStorage.setItem(user, JSON.stringify(userName));
+    }
+
+    const retrieveUserName = function () {
+        //haal user variabele op uit local storage
+        userName = JSON.parse(localStorage.getItem(user));
+
+        //indien null of lege string -> default en stop in local storage
+        if (!userName || userName == "") {
+            userName = "Marty";
+            localStorage.setItem(user, JSON.stringify(userName));
+        }
+
+        //geef user name terug 
+        return userName;
+    }
 
     const createTodo = function (todo) {
         //todo id opvullen id
@@ -62,7 +84,9 @@ const dataAccess = (function () {
         createTodo: createTodo,
         retrieveTodo: retrieveTodo,
         updateTodo: updateTodo,
-        deleteTodo: deleteTodo
+        deleteTodo: deleteTodo,
+        newUserName: newUserName,
+        retrieveUserName: retrieveUserName
     }
 
 
@@ -183,9 +207,19 @@ const todoModule = (function () {
 
     }
 
+    const updateUserName = function (userName) {
+        dataAccess.newUserName(userName);
+    }
+
+    const retrieveUserName = function () {
+        userName = dataAccess.retrieveUserName();
+        todoUI.showUserName(userName);
+    }
     return {
         addToDo: addToDo,
-        retrieveTodos: retrieveTodos
+        retrieveTodos: retrieveTodos,
+        updateUserName: updateUserName,
+        retrieveUserName: retrieveUserName
     }
 })();
 const todoUI = (function () {
@@ -197,16 +231,18 @@ const todoUI = (function () {
     let todoHolder = null;
     let todoCounter = null;
     let todoAddButton = null;
+    let nameHolder = null;
 
-    const setup = function ({ titleClass, categoryClass, todoHolderClass, todoCounterClass, todoAddClass }) {
+    const setup = function ({ titleClass, categoryClass, todoHolderClass, todoCounterClass, todoAddClass, nameClass }) {
 
         newToDo.title = document.querySelector(titleClass);
         newToDo.category = document.querySelector(categoryClass);
         todoHolder = document.querySelector(todoHolderClass);
         todoCounter = document.querySelector(todoCounterClass);
         todoAddButton = document.querySelector(todoAddClass);
+        nameHolder = document.querySelector(nameClass);
 
-        if (!(todoHolder && todoCounter && newToDo.title && newToDo.category && todoAddButton))
+        if (!(todoHolder && todoCounter && newToDo.title && newToDo.category && todoAddButton && nameHolder))
             throw new Error("holders zijn niet goed aangemaakt");
 
         return true
@@ -216,12 +252,22 @@ const todoUI = (function () {
         todoAddButton.addEventListener('click', function () {
             callback(newToDo.title.value, newToDo.category.value);
         });
-
-
     }
 
+    const handleNewName = function (callback) {
+        nameHolder.addEventListener('focusout', function () {
+            callback(this.innerText);
+        })
+        nameHolder.addEventListener('keypress', function (e) {
+            if (e.which === 13)
+                e.preventDefault();
+        })
+    }
+
+    const showUserName = function (userName) {
+        nameHolder.innerText = userName;
+    }
     const appendTodo = function (DOMNode) {
-        console.log(DOMNode);
         todoHolder.append(DOMNode);
     }
 
@@ -232,7 +278,9 @@ const todoUI = (function () {
         setup: setup,
         handleNewTodo: handleNewTodo,
         appendTodo: appendTodo,
-        updateCounter: updateCounter
+        updateCounter: updateCounter,
+        handleNewName: handleNewName,
+        showUserName: showUserName
     }
 })();
 
@@ -246,13 +294,22 @@ const todoUI = (function () {
             categoryClass: '.js-new-category',
             todoHolderClass: '.js-todoHolder',
             todoCounterClass: '.js-total-todo',
-            todoAddClass: '.js-button-add'
+            todoAddClass: '.js-button-add',
+            nameClass: '.js-username'
         })) {
+            //haal op uit local storage
             todoModule.retrieveTodos();
+            todoModule.retrieveUserName();
+
+            //handle new to do and new user name
             todoUI.handleNewTodo(function (title, category) {
                 //te veel werk voor ons; moet in het model komen en ook nog in sync zijn met onze soort van 'backend' : localstorage.
                 todoModule.addToDo(title, category);
             })
+
+            todoUI.handleNewName(function (userName) {
+                todoModule.updateUserName(userName);
+            });
         }
     })
 

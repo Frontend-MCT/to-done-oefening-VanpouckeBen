@@ -1,4 +1,9 @@
 .c-username
 {
  cursor: pointer;
+    
+    &:focus{
+        cursor: text;
+    }
 }
+
